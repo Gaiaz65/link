@@ -4,14 +4,14 @@
     (ngSubmit)="onSubmit(signupForm)">
 
     <h1 fxLayoutAlign="center center">
-      <mat-icon>input</mat-icon> Login
+      <mat-icon>person_add</mat-icon> Register
     </h1>
 
     <mat-form-field>
       <input type="username" matInput placeholder="Username" ngModel name="username" required #uInput="ngModel">
       <mat-error *ngIf="uInput.hasError('required')">Field must not be empty</mat-error>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field >
       <input type="password" matInput placeholder="Your password" ngModel name="password" required minlength="6"
         #pInput="ngModel">
       <mat-error>Password should be longer, 6 characters minimum!</mat-error>

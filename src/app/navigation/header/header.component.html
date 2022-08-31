@@ -1,1 +1,15 @@
-<p>header works!</p>
+<mat-toolbar color="primary" >
+  <a >
+    <mat-icon routerLink="/">link</mat-icon>
+  </a>
+  <div >
+    <ul >
+      <li *ngIf="!isAuth"><a routerLink="/login">Login</a></li>
+      <li *ngIf="!isAuth"><a routerLink="/signup">Register </a></li>
+      <li *ngIf="isAuth"><a routerLink="/">LinkCreator</a></li>
+      <li *ngIf="isAuth"><a>LogOut</a></li>
+    </ul>
+  </div>
+
+
+</mat-toolbar>
