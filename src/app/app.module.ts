@@ -10,6 +10,10 @@ import { HeaderComponent } from './navigation/header/header.component';
 import { HomeComponent } from './main/home/home.component';
 import { MaterialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LinkService } from './main/link.service';
+import { StatisticsComponent } from './main/statistics/statistics.component';
+
 
 @NgModule({
   declarations: [
@@ -18,6 +22,7 @@ import { FormsModule } from '@angular/forms';
     RegisterComponent,
     HeaderComponent,
     HomeComponent,
+    StatisticsComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,8 +30,9 @@ import { FormsModule } from '@angular/forms';
     MaterialModule,
     FormsModule,
     FlexLayoutModule,
+    BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [LinkService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

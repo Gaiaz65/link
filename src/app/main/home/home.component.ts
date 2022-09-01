@@ -1,38 +1,39 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { linkObj } from '../link.model';
+import { NgForm } from '@angular/forms';
+import {  Component } from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard';
+import { LinkService } from '../link.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit, AfterViewInit {
-  newLink!: string;
-  linkStr:string='Your STR';
+export class HomeComponent {
+  linkArr: linkObj[] = [];
+  newLink: string = '';
+  linkStr: string = '';
 
-  displayedColumns = ['initialLink', 'transformedLink', 'visits'];
-  dataSource = new MatTableDataSource<void>();
+  constructor(private clipboard: Clipboard, private lService: LinkService) {}
 
-  @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatPaginator) paginatior!: MatPaginator;
+  // ngDoCheck(): void {
+  //   this.dataSource.data = this.lService.getLinks();
+  //   console.log ('checked')
+  // }
 
-  doFilter(filterValue: any) {
-    if (filterValue.value != null) {
-      this.dataSource.filter = filterValue.value.trim().toLowerCase();
-    } else {
-      this.dataSource;
-    }
+  onTransform(form: NgForm) {
+    const longLink = form.value.longLink;
+    this.newLink = longLink.substring(0, 12);
+    const newLinkObj = {
+      oldLink: longLink,
+      newLink: this.newLink,
+      counter: 0,
+    };
+    this.lService.addLink(newLinkObj);
   }
 
-  ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginatior;
+  onClear() {
+    this.newLink = '';
+    this.linkStr = '';
   }
-
-  constructor(private clipboard: Clipboard) {}
-
-  ngOnInit(): void {}
 }
