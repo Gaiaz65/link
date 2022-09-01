@@ -1,5 +1,6 @@
 export interface linkObj {
-  oldLink:string;
-  newLink:string;
-  counter:number;
+  id: number;
+  short:string;
+  target: string;
+  counter: number;
 }

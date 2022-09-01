@@ -1,7 +1,9 @@
-<section class="signup__form">
+<section class="signup__form" *ngIf="!isLoading">
+
 
   <form fxLayout="column" fxLayoutAlign="center center" #signupForm="ngForm" fxLayoutGap="10px"
-    (ngSubmit)="onSubmit(signupForm)">
+    (ngSubmit)="onSubmit(signupForm)"
+    >
 
     <h1 fxLayoutAlign="center center">
       <mat-icon>person_add</mat-icon> Register
@@ -14,8 +16,12 @@
     <mat-form-field >
       <input type="password" matInput placeholder="Your password" ngModel name="password" required minlength="6"
         #pInput="ngModel">
-      <mat-error>Password should be longer, 6 characters minimum!</mat-error>
+      <mat-error>Password should be longer than 6 characters!</mat-error>
     </mat-form-field>
     <button mat-raised-button type="submit" [disabled]="signupForm.invalid" color="primary">Submit</button>
   </form>
 </section>
+
+<div fxFlex *ngIf="isLoading" fxLayoutAlign="center center">
+  <mat-spinner></mat-spinner>
+</div>

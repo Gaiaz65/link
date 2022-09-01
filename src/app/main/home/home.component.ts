@@ -22,14 +22,12 @@ export class HomeComponent {
   // }
 
   onTransform(form: NgForm) {
-    const longLink = form.value.longLink;
-    this.newLink = longLink.substring(0, 12);
-    const newLinkObj = {
-      oldLink: longLink,
-      newLink: this.newLink,
-      counter: 0,
-    };
-    this.lService.addLink(newLinkObj);
+    this.lService.transformLink(form).subscribe(
+      res => {
+        console.log (res)
+      }
+    );
+
   }
 
   onClear() {
@@ -37,3 +35,13 @@ export class HomeComponent {
     this.linkStr = '';
   }
 }
+
+
+//  const longLink = form.value.longLink;
+//  this.newLink = longLink.substring(0, 12);
+//  const newLinkObj = {
+//    oldLink: longLink,
+//    newLink: this.newLink,
+//    counter: 0,
+//  };
+//  this.lService.addLink(newLinkObj);

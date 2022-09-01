@@ -1,5 +1,7 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -7,9 +9,31 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-  constructor() {}
+  isLoading = false;
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
 
-  onSubmit(signupForm: NgForm) {}
+  onSubmit(signupForm: NgForm) {
+    if (!signupForm.valid) {
+      return;
+    }
+    this.isLoading = true;
+    const username = signupForm.value.username;
+    const password = signupForm.value.password;
+    this.authService.register(username, password).subscribe(
+      (res: any) => {
+        console.log(res);
+        this.authService.isAuth = true;
+        this.isLoading = false;
+        this.router.navigate(['/login']);
+      },
+      (errorMessage: any) => {
+        console.log(errorMessage);
+        this.isLoading = false;
+        signupForm.reset();
+      }
+    );
+  }
+
 }

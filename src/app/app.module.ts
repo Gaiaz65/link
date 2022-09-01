@@ -13,6 +13,8 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LinkService } from './main/link.service';
 import { StatisticsComponent } from './main/statistics/statistics.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptorService } from './auth/auth-interceptor.service';
 
 
 @NgModule({
@@ -31,8 +33,16 @@ import { StatisticsComponent } from './main/statistics/statistics.component';
     FormsModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
+    HttpClientModule,
   ],
-  providers: [LinkService],
+  providers: [
+    LinkService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
