@@ -10,6 +10,7 @@ import { linkObj } from './link.model';
 export class LinkService {
   constructor(private http: HttpClient) {}
   linksArrChanged = new Subject<linkObj[] | null>();
+  newLink:string;
   linksArr: linkObj[] = [
     {
       id: 1,
@@ -41,32 +42,26 @@ export class LinkService {
     return this.linksArr.slice();
   }
 
+  addLinkObj(link:linkObj) {
+    this.linksArr.push(link);
+    this.newLink = link.short
+    this.linksArrChanged.next( this.linksArr.slice())
+  }
+
+
   transformLink(form: NgForm) {
     const longLink = form.value.longLink;
 
-    if (localStorage['userData']) {
-    let token = JSON.parse(localStorage['userData']);
-    let headers = new Headers
-    headers.append(
-      'Authorization',
-      ''+token.access_token+' '+token.token_type+''
-    );
-    console.log (headers)
-    }
     return this.http
-      .post<linkObj>('http://79.143.31.216/squeeze?link=' + longLink,'')
+      .post<any>('http://79.143.31.216/squeeze?link=' + longLink, '')
       .pipe(
-        map((res) => {
-          console.log(res);
+        map((result) => {
+          console.log(result);
+          this.addLinkObj(result);
         })
-      );}
+      );
+  }
 
   }
 
-  // this.addLink(newLinkObj);
 
-//   addLink(newLinkObj: linkObj) {
-//   //   this.linksArr.push(newLinkObj);
-//   //   this.linksArrChanged.next(this.linksArr.slice());
-//   // }
-// }

@@ -21,7 +21,6 @@ export class AuthService {
   constructor(private http: HttpClient,
     private router:Router) {}
 
-
   register(username: string, password: string) {
     return this.http
       .post<RegisterResponse>(
@@ -65,9 +64,8 @@ export class AuthService {
         map(
           (logData) => {
             this.handleAuthentication(
-              logData.access_token,
               logData.token_type,
-              logData.expiration
+              logData.access_token,
             );
           },
           (error: any) => {
@@ -79,12 +77,11 @@ export class AuthService {
   }
 
   private handleAuthentication(
-    access_token: string,
     token_type: string,
-    expiration?: Date
+    access_token: string,
   ) {
-    const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
-    const user = new User(token_type, access_token, expirationDate);
+    this.isAuth = true;
+    const user = new User(token_type, access_token);
     this.user.next(user);
     console.log (user)
     localStorage.setItem('userData', JSON.stringify(user));
@@ -92,9 +89,10 @@ export class AuthService {
   }
 
   logout() {
+    this.isAuth = false;
     this.user.next(null);
-     this.router.navigate(['/signup']);
-     localStorage.removeItem('userData');
+    this.router.navigate(['/signup']);
+    localStorage.removeItem('userData');
   }
 }
 

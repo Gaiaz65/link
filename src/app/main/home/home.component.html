@@ -1,16 +1,32 @@
 <mat-tab-group mat-stretch-tabs>
-  <mat-tab label="Link transformation">
+
+
+  <mat-tab  label="Link transformation" >
+    <mat-card class="successtr" fxFlex="20%" fxLayoutAlign="center center" [fxHide]="!successTr">
+      <mat-card-content>
+        <mat-card-title color="primary">Success <mat-icon color="primary">done</mat-icon>
+        </mat-card-title>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card fxFlex="20%" fxLayoutAlign="center center" *ngIf="error" class="errorTr">
+      <mat-card-content>
+        <mat-card-title fxLayoutAlign="center center">Error <mat-icon color="warn">error</mat-icon>
+        </mat-card-title>
+      </mat-card-content>
+    </mat-card>
+
     <div fxLayoutAlign="center center" fxLayoutGap="40px">
       <form fxLayout="column" fxFlex="30%" fxLayoutGap="30px" #transForm="ngForm" (ngSubmit)="onTransform(transForm)">
         <mat-form-field class="example-form-field" appearance="fill">
           <mat-label>Transform your link</mat-label>
           <input matInput [(ngModel)]="linkStr" type="url" name="longLink" placeholder="https://example.com"
-            pattern="https://.*" required>
+            pattern="http*" required>
           <button *ngIf="linkStr" matSuffix mat-icon-button aria-label="Clear" (click)="linkStr=''">
             <mat-icon>close</mat-icon>
           </button>
           <mat-error>It should be a link!</mat-error>
-          <mat-hint>The link should start with https://</mat-hint>
+          <mat-hint>The link should start with http</mat-hint>
         </mat-form-field>
         <button mat-raised-button type="submit" color="primary"
           [disabled]="!transForm.valid && linkStr">Transform</button>
@@ -20,11 +36,15 @@
         <mat-form-field appearance="fill">
           <mat-label for="clipboard-example-textarea">{{newLink ? 'Copy your short version' :'The transformed version is going to appear in here' }}</mat-label>
           <input matInput type="text" [(ngModel)]="newLink" name="longLink" [disabled]="!newLink">
-          <button color="primary" matSuffix mat-icon-button aria-label="copy" >
+          <button color="primary" matSuffix mat-icon-button aria-label="copy" [disabled]="!newLink" (click)="copyToClipboard()">
             <mat-icon>content_copy</mat-icon>
           </button>
+          <mat-hint *ngIf="copied">Copied!</mat-hint>
         </mat-form-field>
-        <button mat-raised-button type="submit" color="warn" [disabled]="!newLink" (click)="onClear()">Clear the form</button>
+        <button mat-raised-button type="submit" color="warn" [disabled]="!newLink" (click)="onClear()">Clear the
+          form</button>
+
+
       </form>
     </div>
   </mat-tab>

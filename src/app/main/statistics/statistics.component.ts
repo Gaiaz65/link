@@ -21,7 +21,7 @@ import { linkObj } from '../link.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatisticsComponent implements OnInit, AfterViewInit, DoCheck {
-  displayedColumns = ['initialLink', 'transformedLink', 'visits'];
+  displayedColumns = ['id','initialLink', 'transformedLink', 'visits'];
   dataSource = new MatTableDataSource<linkObj>();
 
   @ViewChild(MatSort) sort!: MatSort;

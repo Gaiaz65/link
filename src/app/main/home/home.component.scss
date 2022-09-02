@@ -5,3 +5,12 @@
 form {
   margin-top: 30px;
 }
+
+.errorTr, .successtr {
+  width: 15%;
+  min-width: 170px;
+ position: absolute;
+ right: 2%;
+ top: 1%;
+ z-index: 100;
+}

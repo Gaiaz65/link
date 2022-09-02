@@ -4,14 +4,20 @@
   </mat-form-field>
 </div>
 <mat-table [dataSource]="dataSource" matSort>
+
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>id</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.id}}</mat-cell>
+  </ng-container>
+
   <ng-container matColumnDef="initialLink">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Initial link</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.oldLink}}</mat-cell>
+    <mat-cell *matCellDef="let element">{{element.target}}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="transformedLink">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Transformed link</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.newLink }}</mat-cell>
+    <mat-cell *matCellDef="let element">{{element.short }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="visits">
