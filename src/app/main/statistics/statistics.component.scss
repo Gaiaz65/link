@@ -1,0 +1,44 @@
+mat-spinner {
+  margin: 0 auto;
+  padding-top: 40px;
+}
+
+
+#searchDiv {
+  padding: 20px;
+}
+
+.table {
+  width: 100%;
+  padding: 0 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+mat-row,
+mat-header-row {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+}
+
+.mat-column-id {
+  max-width: 100px;
+}
+
+.mat-column-transformedLink {
+  max-width: 110px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.mat-column-initialLink {
+  min-width: 200px;
+}
+
+.mat-column-visits {
+  min-width: 100px;
+  display: flex;
+  justify-content: center;
+}

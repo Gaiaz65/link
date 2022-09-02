@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, tap } from 'rxjs';
 import { User } from './user.model';
+import { LinkService } from '../main/link.service';
 
 export interface LoginResponseData {
   username?: string;
@@ -19,7 +20,8 @@ export class AuthService {
   user = new BehaviorSubject<User>(null);
   isAuth = false;
   constructor(private http: HttpClient,
-    private router:Router) {}
+    private router:Router,
+    private linkService:LinkService) {}
 
   register(username: string, password: string) {
     return this.http
@@ -32,7 +34,6 @@ export class AuthService {
       )
       .pipe(
         tap((logData) => {
-          console.log(logData);
         })
       );
   }
@@ -76,6 +77,22 @@ export class AuthService {
       );
   }
 
+  autoLogin(){
+    const storedUser = JSON.parse(localStorage.getItem('userData'));
+    if (!storedUser) {
+      return
+    }
+
+    const loadedUser = new User (
+     storedUser.access_token,
+     storedUser.token_type
+    )
+    this.user.next(loadedUser);
+    setTimeout(() => {
+      this.linkService.fetchLinks().subscribe();
+    }, 1000);
+  }
+
   private handleAuthentication(
     token_type: string,
     access_token: string,
@@ -83,7 +100,6 @@ export class AuthService {
     this.isAuth = true;
     const user = new User(token_type, access_token);
     this.user.next(user);
-    console.log (user)
     localStorage.setItem('userData', JSON.stringify(user));
     console.dir(JSON.parse(localStorage['userData']));
   }
@@ -95,25 +111,3 @@ export class AuthService {
     localStorage.removeItem('userData');
   }
 }
-
-// `grant_type=&{$username}=1&{$password}=1&{$scope}=&{$client_id}=&{$client_secret}=`
-
-// .post('http://79.143.31.216/login',  'grant_type=&username='+username+'&password='+password+'1&scope=&client_id=&client_secret=')
-
-// {
-//         grant_type: '',
-//         username: username,
-//         password: password,
-//         scope: '',
-//         client_id: '',
-//         client_secret: '',
-//       })
-
-// {
-// grant_type: '',
-// username: username,
-// password: password,
-// scope: '',
-// client_id: '',
-// client_secret: '',
-//       })

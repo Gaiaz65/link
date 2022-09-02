@@ -21,12 +21,12 @@
         <mat-form-field class="example-form-field" appearance="fill">
           <mat-label>Transform your link</mat-label>
           <input matInput [(ngModel)]="linkStr" type="url" name="longLink" placeholder="https://example.com"
-            pattern="http*" required>
+            pattern="http.*" required>
           <button *ngIf="linkStr" matSuffix mat-icon-button aria-label="Clear" (click)="linkStr=''">
             <mat-icon>close</mat-icon>
           </button>
           <mat-error>It should be a link!</mat-error>
-          <mat-hint>The link should start with http</mat-hint>
+          <mat-hint>The link should start with https://</mat-hint>
         </mat-form-field>
         <button mat-raised-button type="submit" color="primary"
           [disabled]="!transForm.valid && linkStr">Transform</button>
