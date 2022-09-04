@@ -20,7 +20,6 @@ export class linksDb {
   ): Observable<linkObj[]> {
     const href = 'http://79.143.31.216/statistics';
     const offset = page * limit;
-    console.log(offset);
     const requestUrl = `${href}?order=${order}_${sort}&offset=${offset}&limit=${limit}`;
 
     return this._httpClient.get<linkObj[]>(requestUrl);

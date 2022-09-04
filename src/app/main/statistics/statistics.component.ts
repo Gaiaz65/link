@@ -37,7 +37,6 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
-    private lService: LinkService,
     private cdr: ChangeDetectorRef,
     private clipboard: Clipboard,
     private httpclient: HttpClient
@@ -87,15 +86,6 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {}
-
-  doFilter(filterValue: any) {
-    if (filterValue.value != null) {
-      this.dataSource.filter = filterValue.value.trim().toLowerCase();
-    } else {
-      this.dataSource;
-    }
-  }
-
 
 }
 

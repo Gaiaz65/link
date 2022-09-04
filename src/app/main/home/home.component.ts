@@ -11,7 +11,6 @@ import { LinkService } from '../link.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  linkArr: linkObj[] = [];
   newLink: string = '';
   linkStr: string = '';
   successTr = false;

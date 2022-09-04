@@ -13,12 +13,9 @@ export class LinkService {
   constructor(private http: HttpClient) {}
   linksArrChanged = new Subject<linkObj[] | null>();
   newLink: string;
-  linksArr: linkObj[] = [];
 
   addLinkObj(link: linkObj) {
-    this.linksArr.push(link);
     this.newLink = link.short;
-    this.linksArrChanged.next(this.linksArr.slice());
   }
 
   transformLink(form: NgForm) {

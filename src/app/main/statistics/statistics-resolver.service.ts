@@ -14,7 +14,9 @@ export class StatisticsResolverService implements Resolve <linkObj[]> {
         const links = this.lService.linksArr;
 
         if (links.length === 0) {
-          this.lService.fetchLinks();
+          setTimeout(() => {
+            this.lService.getLinks();
+          }, 3000);
         } else {
           return links;
         }
