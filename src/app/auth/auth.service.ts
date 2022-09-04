@@ -20,8 +20,7 @@ export class AuthService {
   user = new BehaviorSubject<User>(null);
   isAuth = false;
   constructor(private http: HttpClient,
-    private router:Router,
-    private linkService:LinkService) {}
+    private router:Router) {}
 
   register(username: string, password: string) {
     return this.http
@@ -32,10 +31,6 @@ export class AuthService {
           password,
         ''
       )
-      .pipe(
-        tap((logData) => {
-        })
-      );
   }
 
   login(username: string, password: string) {
@@ -70,7 +65,6 @@ export class AuthService {
             );
           },
           (error: any) => {
-            console.log('return http error', error);
             return error;
           }
         )
@@ -88,9 +82,7 @@ export class AuthService {
      storedUser.token_type
     )
     this.user.next(loadedUser);
-    setTimeout(() => {
-      this.linkService.fetchLinks().subscribe();
-    }, 1000);
+
   }
 
   private handleAuthentication(
@@ -101,7 +93,6 @@ export class AuthService {
     const user = new User(token_type, access_token);
     this.user.next(user);
     localStorage.setItem('userData', JSON.stringify(user));
-    console.dir(JSON.parse(localStorage['userData']));
   }
 
   logout() {

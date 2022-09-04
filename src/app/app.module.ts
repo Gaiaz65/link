@@ -15,6 +15,7 @@ import { LinkService } from './main/link.service';
 import { StatisticsComponent } from './main/statistics/statistics.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { LongnamePipe } from './main/statistics/long-name.pipe';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
     HeaderComponent,
     HomeComponent,
     StatisticsComponent,
+    LongnamePipe,
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,8 @@
 import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import {  AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+
+import {  AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -30,10 +31,10 @@ export class LoginComponent implements OnInit {
         this.isLoading = false;
         this.router.navigate(['/'])
       },
-      // error => {
-      //   console.log(error);
-      //   this.isLoading = false;
-      // }
+      error => {
+        this.router.navigate(['/']);
+        this.isLoading = false;
+      }
     );
   }
 }

@@ -28,7 +28,6 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/login']);
       },
       (errorMessage: any) => {
-        console.log(errorMessage);
         this.isLoading = false;
         signupForm.reset();
       }

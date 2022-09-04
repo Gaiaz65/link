@@ -1,44 +1,67 @@
-mat-spinner {
-  margin: 0 auto;
-  padding-top: 40px;
-}
-
-
-#searchDiv {
-  padding: 20px;
-}
-
 .table {
+
+  &__shortlink {
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 10px;
+    height:50px;
+  }
+
+  &-container {
+    position: relative;
+  }
+
+  &-table-container {
+    position: relative;
+    min-height: 200px;
+    overflow: auto;
+  }
+
+
+
+  &-loading-shade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 56px;
+    right: 0;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-rate-limit-reached {
+    max-width: 360px;
+    text-align: center;
+  }
+
+}
+
+.mat-column-number,
+.mat-column-state {
+  max-width: 64px;
+}
+
+.mat-column-created {
+  max-width: 124px;
+}
+
+table{
   width: 100%;
-  padding: 0 30px;
-  display: flex;
-  flex-direction: column;
+  padding: 0 100px;
 }
 
-
-mat-row,
-mat-header-row {
+td {
+  height: 30px;
   width: 100%;
-  display: flex;
-  gap: 20px;
-}
+  padding: 5px 20px;
 
-.mat-column-id {
-  max-width: 100px;
-}
-
-.mat-column-transformedLink {
-  max-width: 110px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.mat-column-initialLink {
-  min-width: 200px;
-}
-
-.mat-column-visits {
-  min-width: 100px;
-  display: flex;
-  justify-content: center;
+  border: transparent;
+  &:hover {
+    background-color: beige;
+  }
 }

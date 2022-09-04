@@ -1,7 +1,8 @@
-import { linkObj } from '../link.model';
 import { NgForm } from '@angular/forms';
 import {  Component } from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard';
+
+import { linkObj } from '../link.model';
 import { LinkService } from '../link.service';
 
 @Component({
@@ -40,13 +41,3 @@ export class HomeComponent {
     this.linkStr = '';
   }
 }
-
-
-//  const longLink = form.value.longLink;
-//  this.newLink = longLink.substring(0, 12);
-//  const newLinkObj = {
-//    oldLink: longLink,
-//    newLink: this.newLink,
-//    counter: 0,
-//  };
-//  this.lService.addLink(newLinkObj);

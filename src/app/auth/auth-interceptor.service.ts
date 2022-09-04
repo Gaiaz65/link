@@ -4,7 +4,6 @@ import {
   HttpRequest,
   HttpHandler,
   HttpHeaders,
-  HttpParams,
 } from '@angular/common/http';
 import { take, exhaustMap } from 'rxjs/operators';
 
