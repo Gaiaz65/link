@@ -63,6 +63,7 @@ export class AuthService {
               logData.token_type,
               logData.access_token,
             );
+
           },
           (error: any) => {
             return error;
@@ -93,12 +94,12 @@ export class AuthService {
     const user = new User(token_type, access_token);
     this.user.next(user);
     localStorage.setItem('userData', JSON.stringify(user));
+    this.autoLogin();
   }
 
-  logout() {
+  logout(){
     this.isAuth = false;
     this.user.next(null);
     this.router.navigate(['/signup']);
-    localStorage.removeItem('userData');
-  }
+    localStorage.removeItem('userData');}
 }
