@@ -29,10 +29,10 @@ export class LoginComponent implements OnInit {
     authObs.subscribe(
       res => {
         this.isLoading = false;
-        this.router.navigate(['/'])
+        this.router.navigate(['/']);
+        let href = 'http://79.143.31.216/statistics';
       },
       error => {
-        this.router.navigate(['/']);
         this.isLoading = false;
       }
     );
