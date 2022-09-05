@@ -1,4 +1,22 @@
-# Link
+# Linktransformation project
+
+## Docker config
+
+FROM node:latest as node </br>
+WORKDIR /app </br>
+COPY . . </br>
+RUN npm install </br>
+RUN npm run build --prod 
+
+
+FROM nginx:alpine </br>
+COPY --from=node /app/dist/link /usr/share/nginx/html </br> 
+
+## Profile
+
+L: user123 </br> P: user123
+server: localhost:80
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.6.
 
@@ -25,3 +43,5 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
