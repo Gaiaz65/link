@@ -1,6 +1,6 @@
 # Linktransformation project
 
-## docker config
+## Docker config
 
 FROM node:latest as node </br>
 WORKDIR /app </br>
@@ -15,6 +15,7 @@ COPY --from=node /app/dist/link /usr/share/nginx/html </br>
 ## Profile
 
 L: user123 </br> P: user123
+server: localhost:80
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.6.
