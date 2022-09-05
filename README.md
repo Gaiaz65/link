@@ -12,6 +12,11 @@ RUN npm run build --prod
 FROM nginx:alpine </br>
 COPY --from=node /app/dist/link /usr/share/nginx/html </br> 
 
+## Profile
+
+L: user123 </br> P: user123
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.6.
 
 ## Development server
